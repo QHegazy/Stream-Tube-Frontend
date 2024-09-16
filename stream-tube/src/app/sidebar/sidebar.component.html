@@ -1,0 +1,35 @@
+<aside
+  class="bg-base-100 fixed pl-4 h-[100%] block top-16 hover:overflow-auto overflow-hidden"
+  #aside
+>
+  @if (!openSidebar()) {
+  <div class="flex flex-col">
+    <ul>
+      @for (item of list; track $index) {
+      <div
+        class="hover:cursor-pointer text-center hover:bg-gray-600 rounded-md py-1 my-4"
+      >
+        <li><fa-icon [icon]="item.icon" [size]="'lg'"></fa-icon></li>
+        <p class="my-2 text-xs">{{ item.name }}</p>
+      </div>
+
+      }
+    </ul>
+  </div>
+  } @if (openSidebar()) {
+
+  <div class="grid grid-cols-1 divide-y divide-gray-700 w-[230px]">
+    <app-side-bar-element [info]="list"></app-side-bar-element>
+    <app-side-bar-element [info]="list2" header="You"></app-side-bar-element>
+    <app-side-bar-element
+      [info]="list3"
+      header="Subscriptions"
+    ></app-side-bar-element>
+    <app-side-bar-element
+      [info]="list3"
+      header="Explore"
+    ></app-side-bar-element>
+    <app-side-bar-element [info]="list4"></app-side-bar-element>
+  </div>
+  }
+</aside>
