@@ -1,0 +1,33 @@
+<main class="container-fliud mt-16">
+  <section>
+    <div class="mx-10">
+      <ul>
+        <div class="flex gap-6 flex-row mx-[60%]">
+          @for (item of list; track $index) {
+          <li>
+            <button
+              class="tooltip z-10 btn btn-circle"
+              [attr.data-tip]="item.name"
+            >
+              <mat-icon aria-hidden="false" aria-label="icon">{{
+                item.icon
+              }}</mat-icon>
+            </button>
+          </li>
+          }
+        </div>
+      </ul>
+    </div>
+  </section>
+  <section class="flex flex-row">
+    <div class="dashboard-card">
+      <h2 class="font-bold">Latest video performance</h2>
+      <picture class="relative">
+        <img class="rounded-lg overflow-hidden w-[350px]" src="testimg.jpg" />
+        <p class="absolute bottom-10 left-10 z-40 text-sm font-bold">
+          Heeloosd asds
+        </p>
+      </picture>
+    </div>
+  </section>
+</main>
