@@ -1,0 +1,60 @@
+<div class="relative">
+    <button 
+      (click)="toggleData()" 
+      class="flex items-center focus:outline-none"
+      #toggleButton
+    >
+      <img
+        src="https://yt3.ggpht.com/ytc/AIdro_kca4zzSa19srlRdWdaz9q9pwaIGyPYqmyE-ZvehQJr9YL_GufA3vS1TxtgqBQFVeLJKA=s108-c-k-c0x00ffffff-no-rj"
+        alt="Profile"
+        class="rounded-full h-8 w-8 cursor-pointer hover:ring-2 hover:ring-gray-300 dark:hover:ring-gray-600 transition-all"
+      />
+    </button>
+
+    @if (isDataVisible) {
+      <div 
+        class="absolute right-0 mt-2 w-72 bg-white dark:bg-gray-800 rounded-lg shadow-lg border border-gray-200 dark:border-gray-700 py-2 z-50"
+      >
+        <!-- User Info Section -->
+        <div class="px-4 py-3 border-b border-gray-200 dark:border-gray-700">
+          <div class="flex items-start space-x-3">
+            <img
+              src="https://yt3.ggpht.com/ytc/AIdro_kca4zzSa19srlRdWdaz9q9pwaIGyPYqmyE-ZvehQJr9YL_GufA3vS1TxtgqBQFVeLJKA=s108-c-k-c0x00ffffff-no-rj"
+              alt="Profile Image"
+              class="rounded-full h-10 w-10"
+            />
+            <div class="flex flex-col">
+              <span class="font-medium text-gray-900 dark:text-white">mohamed asad</span>
+              <span class="text-sm text-gray-500 dark:text-gray-400">moahmedasad8250</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Stream Studio Section -->
+        <div class="px-4 py-2 border-b border-gray-200 dark:border-gray-700">
+          <a href="#" class="flex items-center space-x-2 hover:bg-gray-100 dark:hover:bg-gray-700 p-2 rounded-lg transition-colors">
+            <i class="fas fa-video text-gray-600 dark:text-gray-400"></i>
+            <span class="text-gray-700 dark:text-gray-300">Stream Studio</span>
+          </a>
+        </div>
+
+        <!-- Settings Section -->
+        <div class="px-4 py-2">
+          <a href="#" class="flex items-center space-x-2 hover:bg-gray-100 dark:hover:bg-gray-700 p-2 rounded-lg transition-colors">
+            <i class="fas fa-cog text-gray-600 dark:text-gray-400"></i>
+            <span class="text-gray-700 dark:text-gray-300">Settings</span>
+          </a>
+        </div>
+
+        <!-- Sign Out Section -->
+        <div class="px-4 py-2 border-t border-gray-200 dark:border-gray-700">
+          <a href="#" 
+             class="flex items-center space-x-2 hover:bg-gray-100 dark:hover:bg-gray-700 p-2 rounded-lg transition-colors group"
+          >
+            <i class="fas fa-sign-out-alt text-gray-600 dark:text-gray-400 group-hover:text-red-500 dark:group-hover:text-red-400"></i>
+            <span class="text-gray-700 dark:text-gray-300 group-hover:text-red-500 dark:group-hover:text-red-400">Sign out</span>
+          </a>
+        </div>
+      </div>
+    }
+  </div>

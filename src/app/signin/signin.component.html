@@ -1,0 +1,153 @@
+<button class="signin-btn" (click)="openModal()">
+  <i class="material-icons">login</i> Sign In
+</button>
+
+@if (isModalOpen) {
+<div class="modal-overlay" (click)="closeModal()">
+  <div class="modal-content dark:bg-main" (click)="$event.stopPropagation()">
+    <button class="close-btn" (click)="closeModal()">
+      <mat-icon>close</mat-icon>
+    </button>
+
+    <div class="form-wrapper relative overflow-hidden">
+      <div class="form-slider" [@slideAnimation]="isSignUp ? 'right' : 'left'">
+        <h2 class="text-2xl font-bold mb-6 text-center dark:text-white">
+          {{ isSignUp ? "Create Account" : "Welcome Back" }}
+        </h2>
+
+        <form
+          [formGroup]="currentForm"
+          (ngSubmit)="onSubmit()"
+          class="space-y-4"
+        >
+          <div class="form-field">
+            <label for="username" class="block mb-1">Username</label>
+            <input
+              id="username"
+              formControlName="username"
+              type="text"
+              class="w-full p-2 border rounded dark:bg-main"
+              placeholder="Enter your username"
+            />
+            @if (currentForm.get('username')?.invalid &&
+            currentForm.get('username')?.touched) {
+            <small class="error"
+              >Username is required (min. 3 characters)</small
+            >
+            }
+          </div>
+
+          @if (isSignUp) {
+          <div class="form-field">
+            <label for="email" class="block mb-1">Email</label>
+            <input
+              class="w-full p-2 border rounded dark:bg-main"
+              id="email"
+              formControlName="email"
+              type="email"
+              placeholder="Enter your email"
+            />
+            @if (currentForm.get('email')?.invalid &&
+            currentForm.get('email')?.touched) {
+            <small class="error">Valid email is required</small>
+            }
+          </div>
+          }
+
+          <div class="form-field">
+            <label for="password" class="block mb-1">Password</label>
+            <input
+              class="w-full p-2 border rounded dark:bg-main"
+              id="password"
+              formControlName="password"
+              type="password"
+              placeholder="Enter your password"
+            />
+            @if (currentForm.get('password')?.invalid &&
+            currentForm.get('password')?.touched) {
+            <small class="error"
+              >Password is required (min. 6 characters)</small
+            >
+            }
+          </div>
+
+          @if (isSignUp) {
+          <div class="form-field">
+            <label for="confirmPassword" class="block mb-1"
+              >Confirm Password</label
+            >
+            <input
+              class="w-full p-2 border rounded dark:bg-main"
+              id="confirmPassword"
+              formControlName="confirmPassword"
+              type="password"
+              placeholder="Confirm your password"
+            />
+            @if (currentForm.get('confirmPassword')?.invalid &&
+            currentForm.get('confirmPassword')?.touched) {
+            <small class="error">Passwords must match</small>
+            }
+          </div>
+          }
+
+          <button
+            type="submit"
+            class="w-full cursor-pointer text-white p-2 rounded mt-6 flex items-center justify-center gap-2 bg-gradient-to-r from-[#000046] to-[#1cb5e0] hover:from-[#000046] hover:to-[#1cb5e0] transition-colors"
+            [disabled]="
+              currentForm.invalid || !currentForm.dirty || !currentForm.touched
+            "
+          >
+            <mat-icon>{{ isSignUp ? "person_add" : "login" }}</mat-icon>
+            {{ isSignUp ? "Create Account" : "Sign In" }}
+          </button>
+        </form>
+
+        <div class="mt-6">
+          <div class="relative text-center">
+            <div class="absolute inset-0 flex items-center">
+              <div class="w-full border-t border-gray-300"></div>
+            </div>
+            <div class="relative flex justify-center">
+              <span class="px-2 bg-white dark:bg-main text-sm text-gray-500"
+                >OR</span
+              >
+            </div>
+          </div>
+
+          <div class="mt-6 space-y-2">
+            @for (provider of socialProviders; track provider.name) {
+            <button
+              type="button"
+              class="social-btn w-full"
+              (click)="signInWithProvider(provider.name)"
+            >
+              <img
+                [src]="provider.icon"
+                [alt]="provider.name"
+                class="w-5 h-5"
+              />
+              <span>Continue with {{ provider.name }}</span>
+            </button>
+            }
+          </div>
+        </div>
+
+        <div class="mt-6 text-center">
+          <span class="text-gray-600 dark:text-gray-400">
+            {{
+              isSignUp ? "Already have an account?" : "Don't have an account?"
+            }}
+          </span>
+          <a
+            href="#"
+            class="ml-2 text-blue-500 hover:text-blue-600 transition-colors"
+            (click)="toggleSignUp($event)"
+          >
+            {{ isSignUp ? "Sign In" : "Sign Up" }}
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+}
