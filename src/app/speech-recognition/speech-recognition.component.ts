@@ -14,6 +14,13 @@ import {
 import { PLATFORM_ID } from '@angular/core';
 import { isPlatformBrowser } from '@angular/common';
 import { Observable } from 'rxjs/internal/Observable';
+declare global {
+  interface Window {
+    SpeechRecognition: typeof webkitSpeechRecognition;
+    webkitSpeechRecognition: typeof webkitSpeechRecognition;
+  }
+}
+
 declare var webkitSpeechRecognition: any;
 @Component({
   selector: 'app-speech-recognition',
@@ -66,6 +73,7 @@ export class SpeechRecognitionComponent implements OnInit, AfterViewInit {
     this.transcript = Array.from(event.results)
       .map((result: any) => result[0].transcript)
       .join('');
+    console.log(this.transcript);
   }
   private onSpeechEnd(): void {
     this.close();

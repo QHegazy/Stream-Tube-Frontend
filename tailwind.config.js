@@ -1,45 +1,34 @@
 module.exports = {
-  darkMode: "class", 
-  content: ["./src/**/*.{html,ts}"], 
-  theme: {
-    extend: {
-      colors: {
-        main: {
-          light: "#ffffff", 
-          dark: "#171717", 
+  flyonui: {
+    themes: [
+      {
+        light: {
+          ...require("flyonui/src/theming/themes")["light"],
+          primary: "#007BFF",
+          secondary: "#f6d860",
+          accent: "#37cdbe",
+          neutral: "#3d4451",
+          "base-100": "#ffffff",
         },
-        text: {
-          light: "#65c8dd", 
-          dark: "#ffffff", 
+        dark: {
+          ...require("flyonui/src/theming/themes")["dark"],
+          primary: "#007BFF",
+          secondary: "#f6d860",
+          accent: "#37cdbe",
+          neutral: "#3d4451",
+          "base-100": "#171717",
         },
       },
-    },
+    ],
   },
+  darkMode: "class",
+  content: ["./src/**/*.{html,ts}", "./node_modules/flyonui/dist/js/*.js"],
   plugins: [
+    require("flyonui"),
+    require("flyonui/plugin"),
     require("@tailwindcss/typography"),
     require("@tailwindcss/forms"),
     require("@tailwindcss/aspect-ratio"),
     require("@tailwindcss/container-queries"),
-    function ({ addComponents, theme }) {
-      addComponents({
-        // Background color for elements with bg-main class
-        ".bg-main": {
-          backgroundColor: theme("colors.main.light"), // Default background for light mode
-          transition: "background-color 0.3s ease-in-out",
-        },
-        ".dark .bg-main": {
-          backgroundColor: theme("colors.main.dark"), // Dark mode background color
-        },
-
-        // Text color for elements with text-main class
-        ".text-main": {
-          color: theme("colors.text.light"), // Default text color for light mode
-          transition: "color 0.3s ease-in-out",
-        },
-        ".dark .text-main": {
-          color: theme("colors.text.dark"), // Dark mode text color
-        },
-      });
-    },
   ],
 };

@@ -1,3 +1,37 @@
 @use "tailwindcss/base";
 @use "tailwindcss/components";
 @use "tailwindcss/utilities";
+/* Add these to your global styles.scss */
+/* Base theme transitions */
+/* Base theme transitions */
+:root {
+  transition: background-color 0.3s ease-in-out, color 0.3s ease-in-out;
+}
+
+/* Theme-related property transitions */
+*,
+*::before,
+*::after {
+  transition: background-color 0.3s ease-in-out, border-color 0.3s ease-in-out;
+}
+
+/* Simplified combo box styles */
+.combo-box-selected:active,
+.combo-box-selected.menu {
+  background-color: var(--primary);
+  opacity: 0.9;
+}
+
+.dark .combo-box-selected:active,
+.dark .combo-box-selected.menu {
+  background-color: var(--primary);
+  opacity: 0.8;
+}
+
+/* Exclude specific elements */
+ul.combo-box-selected,
+.menu-title.combo-box-selected,
+.collapse-title.combo-box-selected {
+  background-color: inherit;
+  opacity: 1;
+}

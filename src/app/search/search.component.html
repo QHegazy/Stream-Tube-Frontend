@@ -1,40 +1,17 @@
-<div class="max-w-2xl mx-auto">
-  <form
-    class="flex flex-col sm:flex-row items-center space-y-4 sm:space-y-0 sm:space-x-4"
-  >
-    <label for="voice-search" class="sr-only">Search</label>
-    <div class="relative w-full sm:w-auto">
-      <div
-        class="flex absolute inset-y-0 left-0 items-center pl-3 pointer-events-none"
-      >
-        <!-- Use Angular Material icon for search -->
-        <mat-icon class="w-5 h-5 text-gray-500 dark:text-gray-400"
-          >search</mat-icon
-        >
-      </div>
-      <input
-        type="text"
-        id="voice-search"
-        class="bg-gray-200 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full pl-10 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-        placeholder="Search For your Desire"
-        required
-      />
-      <button
-        type="button"
-        class="flex absolute inset-y-0 right-0 items-center pr-3"
-      >
-        <mat-icon
-          class="w-4 h-4 text-gray-500 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white"
-          >microphone</mat-icon
-        >
-      </button>
-    </div>
+<div class="flex flex-row justify-center items-center gap-4">
+  <div class="join max-w-sm">
+    <input
+      class="input join-item focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+      placeholder="Search"
+    />
     <button
-      type="submit"
-      class="inline-flex items-center py-2.5 px-3 text-sm font-medium text-white bg-gradient-to-r from-[#23074d] to-[#cc5333] rounded-full border border-transparent hover:bg-gradient-to-l hover:from-[#e94057] hover:to-[#f27121] focus:outline-none dark:bg-gradient-to-r dark:from-[#8a2387] dark:via-[#e94057] dark:to-[#f27121] dark:hover:bg-gradient-to-l dark:hover:from-[#e94057] dark:hover:to-[#f27121] shadow-lg transition-all duration-500 ease-in-out"
+      class="btn btn-outline btn-warning btn-gradient join-item rounded-full"
     >
-      <mat-icon class="mr-2 -ml-1 w-5 h-5 text-gradient">search</mat-icon>
-      Search
+      <mat-icon>search</mat-icon>
     </button>
-  </form>
+  </div>
+
+  <button class="btn rounded-full btn-warning btn-gradient mic px-2 ">
+    <mat-icon>mic</mat-icon>
+  </button>
 </div>

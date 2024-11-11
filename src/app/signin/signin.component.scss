@@ -5,26 +5,27 @@
   width: 100%;
   height: 100%;
   background-color: rgba(0, 0, 0, 0.5);
+  @apply dark:bg-black/70;
   display: flex;
   justify-content: center;
   align-items: center;
   z-index: 1000;
   animation: fadeIn 0.3s ease-in-out;
+  backdrop-filter: blur(4px);
 }
 
-// Modal content
 .modal-content {
-  background-color: white;
+  @apply bg-white dark:bg-gray-900;
   padding: 2rem;
-  border-radius: 8px;
+  border-radius: 1rem;
   width: 90%;
   max-width: 400px;
   position: relative;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  @apply shadow-lg dark:shadow-2xl;
   animation: slideIn 0.3s ease-in-out;
+  @apply border border-gray-200 dark:border-gray-700;
 }
 
-// Close button
 .close-btn {
   position: absolute;
   top: 1rem;
@@ -36,146 +37,147 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  color: #666;
+  @apply text-gray-500 dark:text-gray-400;
   font-size: 1.2rem;
-  transition: color 0.2s;
+  transition: all 0.2s;
   z-index: 1;
+  border-radius: 9999px;
 
   &:hover {
-    color: #333;
+    @apply bg-gray-100 dark:bg-gray-800;
+    @apply text-gray-700 dark:text-gray-200;
   }
 }
 
-// Title
 h2 {
+  @apply text-gray-900 dark:text-white;
   margin-bottom: 1.5rem;
-  color: #333;
   font-size: 1.5rem;
+  font-weight: 600;
 }
 
-// Form fields
 .form-field {
   margin-bottom: 1.5rem;
 
   label {
     display: block;
     margin-bottom: 0.5rem;
-    color: #333;
+    @apply text-gray-700 dark:text-gray-300;
     font-weight: 500;
-    @apply dark:text-white;
   }
 
   input {
     width: 100%;
     padding: 0.75rem;
-    border: 1px solid #ddd;
-    @apply dark:text-white;
-    border-radius: 4px;
+    @apply bg-white dark:bg-gray-800;
+    @apply border border-gray-300 dark:border-gray-600;
+    @apply text-gray-900 dark:text-white;
+    border-radius: 0.5rem;
     font-size: 1rem;
-    transition: border-color 0.2s;
+    transition: all 0.2s;
 
     &:focus {
       outline: none;
-      border-color: #007bff;
+      @apply ring-2 ring-primary/50 border-primary;
+      @apply dark:ring-primary/40 dark:border-primary;
     }
 
     &::placeholder {
-      color: #999;
+      @apply text-gray-400 dark:text-gray-500;
     }
   }
 }
-.social-btn img {
-  width: 30px;
-  height: 30px;
-  margin-right: 8px;
-}
+
 .social-btn {
   display: flex;
   align-items: center;
-  gap: 0.5rem;
+  justify-content: center;
+  gap: 0.75rem;
   margin-bottom: 1rem;
   padding: 0.75rem;
-  border: 1px solid #ddd;
-  border-radius: 4px;
+  @apply border border-gray-300 dark:border-gray-600;
+  border-radius: 0.5rem;
   cursor: pointer;
   width: 100%;
-  background-color: white;
+  @apply bg-white dark:bg-gray-800;
+  @apply text-gray-700 dark:text-gray-300;
+  transition: all 0.2s;
+
+  img {
+    width: 24px;
+    height: 24px;
+  }
 
   &:hover {
-    background-color: #f2f2f2;
+    @apply bg-gray-50 dark:bg-gray-700;
+    @apply border-gray-400 dark:border-gray-500;
   }
-  @apply dark:bg-[#171717] dark:border-gray-600 dark:text-white dark:hover:bg-gray-800;
 }
 
-// Error messages
 .error {
-  color: #dc3545;
+  @apply text-red-500 dark:text-red-400;
   font-size: 0.875rem;
   margin-top: 0.25rem;
   display: block;
 }
 
-// Sign in button styles
 .signin-btn {
-  background-color: #007bff;
-  color: white;
   border: none;
-  padding: 0.5rem 1rem;
-  border-radius: 4px;
+  border-radius: 0.5rem;
   cursor: pointer;
   display: flex;
   align-items: center;
-  gap: 0.5rem;
+  justify-content: center;
+  gap: 0.75rem;
   font-size: 1rem;
-
-  &:hover {
-    background-color: #0056b3;
-  }
+  font-weight: 500;
+  transition: all 0.2s;
 }
+
 .divider {
   display: flex;
   align-items: center;
   justify-content: center;
   width: 100%;
   text-align: center;
-}
+  margin: 1.5rem 0;
 
-.divider h1 {
-  margin: 0 10px;
-  font-weight: bold;
-  font-size: 1.2rem;
-}
+  h1 {
+    margin: 0 10px;
+    @apply text-gray-500 dark:text-gray-400;
+    font-weight: 500;
+    font-size: 0.875rem;
+  }
 
-.divider::before,
-.divider::after {
-  content: "";
-  flex: 1;
-  border-bottom: 1px solid #ccc;
-  margin: 0 10px;
+  &::before,
+  &::after {
+    content: "";
+    flex: 1;
+    @apply border-b border-gray-200 dark:border-gray-700;
+  }
 }
 
 .submit-btn {
   width: 100%;
-  background-color: #007bff;
-  color: white;
+  @apply bg-primary hover:bg-primary/90;
+  @apply text-white;
   border: none;
   padding: 0.75rem;
-  border-radius: 4px;
+  border-radius: 0.5rem;
   cursor: pointer;
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 0.5rem;
+  gap: 0.75rem;
   font-size: 1rem;
-  margin-top: 1rem;
-
-  &:hover:not(:disabled) {
-    background-color: #0056b3;
-  }
+  font-weight: 500;
+  margin-top: 1.5rem;
+  transition: all 0.2s;
 
   &:disabled {
-    background-color: #ccc;
-    cursor: not-allowed;
+    @apply bg-gray-300 dark:bg-gray-600;
+    @apply cursor-not-allowed;
+    opacity: 0.7;
   }
 }
 
@@ -190,7 +192,7 @@ h2 {
 
 @keyframes slideIn {
   from {
-    transform: translateY(-20px);
+    transform: translateY(-30px);
     opacity: 0;
   }
   to {
@@ -203,5 +205,6 @@ h2 {
   .modal-content {
     width: 95%;
     padding: 1.5rem;
+    margin: 1rem;
   }
 }

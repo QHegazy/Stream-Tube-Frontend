@@ -1,0 +1,11 @@
+:host {
+  display: inline-block;
+}
+
+.btn-circle {
+  @apply w-12 h-12 p-0 rounded-full;
+}
+
+.rotate-180 {
+  transform: rotate(180deg);
+}
