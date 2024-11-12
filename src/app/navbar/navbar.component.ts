@@ -21,6 +21,10 @@ import { MatIconModule } from '@angular/material/icon';
 })
 export class NavbarComponent {
   openSpeech: boolean = false;
+  $user: any;
+  constructor() {}
+  ngOnInit() {}
+
 
   openListeningDilog() {
     this.openSpeech = true;

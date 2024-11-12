@@ -12,6 +12,12 @@
   </div>
   <div class="navbar-end items-center gap-4">
     <app-theme-toggle></app-theme-toggle>
+    @if ($user) {
     <app-user-nav></app-user-nav>
+
+    } @else {
+    <app-signin></app-signin>
+
+    }
   </div>
 </nav>

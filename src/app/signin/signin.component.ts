@@ -5,7 +5,7 @@ import {
   transition,
   trigger,
 } from '@angular/animations';
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import {
   FormBuilder,
   FormGroup,
@@ -13,6 +13,12 @@ import {
   ReactiveFormsModule,
 } from '@angular/forms';
 import { MatIconModule } from '@angular/material/icon';
+import { Store } from '@ngrx/store';
+import { Observable } from 'rxjs';
+import { AuthState } from '../store/auth.reducer';
+import * as AuthActions from '../store/auth.actions';
+import { selectAuthError, selectIsAuthenticated } from '../store/auth.seletor';
+import { SignupService } from '../services/signup/signup.service';
 
 @Component({
   selector: 'app-signin',
@@ -50,6 +56,12 @@ export class SigninComponent {
   signUpForm!: FormGroup;
   isModalOpen: boolean = false;
   isSignUp: boolean = false;
+  signupService = inject(SignupService);
+  private store = inject(Store<{ auth: AuthState }>);
+
+  // NgRx selectors
+  isAuthenticated$ = this.store.select(selectIsAuthenticated);
+  authError$ = this.store.select(selectAuthError);
 
   socialProviders = [
     { name: 'Google', icon: 'Google.SVG', index: 0 },
@@ -64,6 +76,8 @@ export class SigninComponent {
 
   constructor(private fb: FormBuilder) {
     this.initializeForms();
+
+    // Subscribe to auth status to handle successful authentication
   }
 
   ngOnInit(): void {
@@ -117,15 +131,40 @@ export class SigninComponent {
 
   onSubmit(): void {
     if (this.currentForm.valid) {
-      console.log(
-        `${this.isSignUp ? 'Sign Up' : 'Sign In'} Form Data:`,
-        this.currentForm.value
-      );
-      this.closeModal();
+      if (this.isSignUp) {
+        this.signupService.signup(this.currentForm.value).subscribe((user) => {
+          console.log(user);
+        });
+      } else {
+        this.signupService.signup(this.currentForm.value).subscribe();
+      }
     } else {
       this.markFormTouched(this.currentForm);
     }
   }
+  // onSubmit(): void {
+  //   if (this.currentForm.valid) {
+  //     console.log('Form Data:', this.currentForm.value);
+  //     if (this.isSignUp) {
+  //       const { username, email, password, confirmPassword } =
+  //         this.signUpForm.value;
+  //       this.store.dispatch(
+  //         AuthActions.signupRequest({
+  //           signup: {
+  //             username,
+  //             email,
+  //             password,
+  //             confirmPassword: confirmPassword,
+  //           },
+  //         })
+  //       );
+  //     } else {
+  //       console.log('Sign In Form Data:', this.signInForm.value);
+  //     }
+  //   } else {
+  //     this.markFormTouched(this.currentForm);
+  //   }
+  // }
 
   private markFormTouched(form: FormGroup): void {
     Object.values(form.controls).forEach((control) => {
@@ -138,6 +177,5 @@ export class SigninComponent {
 
   signInWithProvider(provider: string): void {
     console.log(`Signing in with ${provider}`);
-    // Implement provider-specific authentication logic here
   }
 }
