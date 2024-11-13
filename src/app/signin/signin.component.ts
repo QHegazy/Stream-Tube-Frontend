@@ -15,9 +15,6 @@ import {
 import { MatIconModule } from '@angular/material/icon';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
-import { AuthState } from '../store/auth.reducer';
-import * as AuthActions from '../store/auth.actions';
-import { selectAuthError, selectIsAuthenticated } from '../store/auth.seletor';
 import { SignupService } from '../services/signup/signup.service';
 
 @Component({
@@ -57,11 +54,8 @@ export class SigninComponent {
   isModalOpen: boolean = false;
   isSignUp: boolean = false;
   signupService = inject(SignupService);
-  private store = inject(Store<{ auth: AuthState }>);
 
   // NgRx selectors
-  isAuthenticated$ = this.store.select(selectIsAuthenticated);
-  authError$ = this.store.select(selectAuthError);
 
   socialProviders = [
     { name: 'Google', icon: 'Google.SVG', index: 0 },
@@ -142,29 +136,6 @@ export class SigninComponent {
       this.markFormTouched(this.currentForm);
     }
   }
-  // onSubmit(): void {
-  //   if (this.currentForm.valid) {
-  //     console.log('Form Data:', this.currentForm.value);
-  //     if (this.isSignUp) {
-  //       const { username, email, password, confirmPassword } =
-  //         this.signUpForm.value;
-  //       this.store.dispatch(
-  //         AuthActions.signupRequest({
-  //           signup: {
-  //             username,
-  //             email,
-  //             password,
-  //             confirmPassword: confirmPassword,
-  //           },
-  //         })
-  //       );
-  //     } else {
-  //       console.log('Sign In Form Data:', this.signInForm.value);
-  //     }
-  //   } else {
-  //     this.markFormTouched(this.currentForm);
-  //   }
-  // }
 
   private markFormTouched(form: FormGroup): void {
     Object.values(form.controls).forEach((control) => {
