@@ -120,18 +120,21 @@
 
           <div class="mt-6 space-y-2">
             @for (provider of socialProviders; track provider.name) {
-            <button
-              type="button"
-              class="social-btn w-full"
-              (click)="signInWithProvider(provider.name)"
-            >
-              <img
-                [src]="provider.icon"
-                [alt]="provider.name"
-                class="w-5 h-5"
-              />
-              <span>Continue with {{ provider.name }}</span>
-            </button>
+            <a [href]="provider.url">
+              <button
+                type="button"
+                class="social-btn w-full"
+                (click)="signInWithProvider(provider.name)"
+              >
+                <img
+                  [src]="provider.icon"
+                  [alt]="provider.name"
+                  class="w-5 h-5"
+                />
+                <span>Continue with {{ provider.name }}</span>
+              </button>
+            </a>
+
             }
           </div>
         </div>

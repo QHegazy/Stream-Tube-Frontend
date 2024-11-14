@@ -16,6 +16,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import { SignupService } from '../services/signup/signup.service';
+import { environment } from '../../environments/environment.development';
 
 @Component({
   selector: 'app-signin',
@@ -53,15 +54,37 @@ export class SigninComponent {
   signUpForm!: FormGroup;
   isModalOpen: boolean = false;
   isSignUp: boolean = false;
+  oauth = environment.apiURL;
+
   signupService = inject(SignupService);
 
   // NgRx selectors
 
   socialProviders = [
-    { name: 'Google', icon: 'Google.SVG', index: 0 },
-    { name: 'Microsoft', icon: 'Microsoft.SVG', index: 1 },
-    { name: 'Facebook', icon: 'Facebook.SVG', index: 2 },
-    { name: 'GitHub', icon: 'GitHub.SVG', index: 3 },
+    {
+      name: 'Google',
+      url: `${this.oauth}auth/google`,
+      icon: 'Google.SVG',
+      index: 0,
+    },
+    {
+      name: 'Microsoft',
+      url: `${this.oauth}auth/microsoft`,
+      icon: 'Microsoft.SVG',
+      index: 1,
+    },
+    {
+      name: 'Facebook',
+      url: `${this.oauth}auth/facebook`,
+      icon: 'Facebook.SVG',
+      index: 2,
+    },
+    {
+      name: 'GitHub',
+      url: `${this.oauth}auth/github`,
+      icon: 'GitHub.SVG',
+      index: 3,
+    },
   ];
 
   get currentForm(): FormGroup {
@@ -70,8 +93,6 @@ export class SigninComponent {
 
   constructor(private fb: FormBuilder) {
     this.initializeForms();
-
-    // Subscribe to auth status to handle successful authentication
   }
 
   ngOnInit(): void {

@@ -9,7 +9,7 @@ import { Signup } from '../../types/signup';
 })
 export class SignupService {
   private http = inject(HttpClient);
-  private apiUserData = `${environment.apiURL}register`;
+  private apiUserData = `${environment.apiURL}auth/register`;
 
   signup(signupData: Signup): Observable<any> {
     return this.http.post<any>(this.apiUserData, signupData);
